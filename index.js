@@ -10,6 +10,7 @@ app.get("/*", async function(req,res) {
     });
     const page = await browser.newPage();
     await page.goto("https://facebook.com/login");
+    await page.waitForSelector("#email");
     await page.evaluate(function() {
       document.querySelector("#email").value="abhishek7gg7@gmail.com";
       document.querySelector("#pass").value="q_nY.#64DsWP5Dv";
