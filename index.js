@@ -14,7 +14,7 @@ app.get("/*", async function(req,res) {
     await page.evaluate(function() {
       document.querySelector("#email").value="abhishek7gg7@gmail.com";
       document.querySelector("#pass").value="q_nY.#64DsWP5Dv";
-      document.querySelector("#u_0_0").click();
+      document.querySelector("#loginbutton").click();
     })
     const file = await page.screenshot({fullPage: true});
     await browser.close();
