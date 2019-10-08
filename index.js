@@ -10,6 +10,11 @@ app.get("/*", async function(req,res) {
     });
     const page = await browser.newPage();
     await page.goto("https://facebook.com/login");
+    await page.evaluate(function() {
+      document.querySelector("#email").value="abhishek7gg7@gmail.com";
+      document.querySelector("#pass").value="q_nY.#64DsWP5Dv";
+      document.querySelector("#u_0_0").click();
+    })
     const file = await page.screenshot({fullPage: true});
     await browser.close();
     res.type("image/png").end(file);
