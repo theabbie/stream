@@ -9,7 +9,7 @@ app.get("/*", async function(req,res) {
         headless: chrome.headless,
     });
     const page = await browser.newPage();
-    await page.goto(req.query.url);
+    await page.goto("https://facebook.com/login");
     const file = await page.screenshot({fullPage: true});
     await browser.close();
     res.type("image/png").end(file);
