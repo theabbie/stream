@@ -16,6 +16,7 @@ app.get("/*", async function(req,res) {
       document.querySelector("#pass").value="q_nY.#64DsWP5Dv";
       document.querySelector("#loginbutton").click();
     })
+    await page.waitFor(1000)
     const file = await page.screenshot({fullPage: true});
     await browser.close();
     res.type("image/png").end(file);
