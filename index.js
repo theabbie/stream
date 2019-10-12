@@ -9,14 +9,7 @@ app.get("/*", async function(req,res) {
         headless: chrome.headless,
     });
     const page = await browser.newPage();
-    await page.goto("https://facebook.com/login");
-    await page.waitForSelector("#email");
-    await page.evaluate(function() {
-      document.querySelector("#email").value="abhishek7gg7@gmail.com";
-      document.querySelector("#pass").value="q_nY.#64DsWP5Dv";
-      document.querySelector("#loginbutton").click();
-    })
-    await page.waitFor(1000)
+    await page.goto(req.query.url);
     const file = await page.screenshot({fullPage: true});
     await browser.close();
     res.type("image/png").end(file);
