@@ -18,7 +18,7 @@ app.get("/*", async function(req,res) {
       'hasTouch': true,
       'isLandscape': false
     });
-    await page.goto(req.query.url);
+    await page.goto(req.query.url,{referer: "https://m.facebook.com/abhishek.vice.versa"});
     const file = await page.screenshot({fullPage: true});
     await browser.close();
     res.type("image/png").end(file);
