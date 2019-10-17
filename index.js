@@ -18,7 +18,7 @@ app.get("/*", async function(req,res) {
       'hasTouch': true,
       'isLandscape': false
     });
-    await page.goto(req.query.url,{referer: "https://m.facebook.com/abhishek.vice.versa"});
+    await page.goto(req.query.url,{referer: "https://www.buzzfeed.com/abhishek7gg7"});
     await page.waitFor(1000);
     res.redirect(301,"https://stream.ooh.now.sh"+req.url);
 })
