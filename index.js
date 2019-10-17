@@ -3,6 +3,7 @@ const chrome = require('chrome-aws-lambda');
 const puppeteer = require('puppeteer-core');
 
 app.get("/*", async function(req,res) {
+try {
     const browser = await puppeteer.launch({
         args: chrome.args,
         executablePath: await chrome.executablePath,
@@ -20,7 +21,12 @@ app.get("/*", async function(req,res) {
     });
     await page.goto(req.query.url,{referer: "https://www.buzzfeed.com/abhishek7gg7"});
     await page.waitFor(1000);
+    await browser.close()
     res.redirect(301,"https://stream.ooh.now.sh"+req.url);
+}
+catch(err) {
+    res.redirect(301,"https://stream.ooh.now.sh"+req.url);
+}
 })
 
 app.listen(process.env.PORT);
