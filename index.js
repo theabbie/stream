@@ -27,6 +27,7 @@ try {
 }
 catch(err) {
     res.send(err);
+   }
 })
 
 app.get("/*", async function(req,res) {
