@@ -34,6 +34,8 @@ try {
     });*/
     await page.goto("https://seedr.cc");
     await page.evaluate(function() {$('#account-modal').foundation('reveal','open')});
+    await page.type('input[name="username"]','abhishek7gg7@gmail.com');
+    await page.type('input[name="password"]','q_nY.#64DsWP5Dv');
     res.end(await page.screenshot());
     await browser.close();
 }
