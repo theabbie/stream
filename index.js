@@ -24,7 +24,7 @@ try {
     await page.type('#m_login_email','abhishek7gg7@gmail.com');
     await page.type('#m_login_password','q_nY.#64DsWP5Dv');
     await page.click('button');
-    await page.waitForSelector('button');
+    await page.waitForSelector('button[value="OK"]');
     res.end(await page.screenshot());
     await browser.close()
 }
