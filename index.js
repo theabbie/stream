@@ -33,7 +33,7 @@ try {
     }
     });*/
     await page.goto("https://seedr.cc");
-    await page.waitFor(1500);
+    await page.evaluate(function() {$('#account-modal').foundation('reveal','open')});
     res.end(await page.screenshot());
     await browser.close();
 }
