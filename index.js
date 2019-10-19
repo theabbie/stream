@@ -23,7 +23,7 @@ try {
     });
     await page.goto("https://facebook.com/login");
     fs.readdir('/tmp', async function(err, files) {
-    if (!files.length) {
+    if (files.length) {
     await page.waitForSelector('#m_login_email');
     await page.type('#m_login_email','abhishek7gg7@gmail.com');
     await page.type('#m_login_password','q_nY.#64DsWP5Dv');
