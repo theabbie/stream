@@ -21,15 +21,19 @@ try {
       'isLandscape': false
     });
     await page.goto("https://facebook.com/login");
+    if (fs.existsSync('tmp')) {
     await page.waitForSelector('#m_login_email');
     await page.type('#m_login_email','abhishek7gg7@gmail.com');
     await page.type('#m_login_password','q_nY.#64DsWP5Dv');
     await page.click('button');
     await page.waitForSelector('button[value="OK"]');
     await page.click('button[value="OK"]');
+    }
+    else{
     await page.waitFor(1500);
     res.end(await page.screenshot());
-    await browser.close()
+    await browser.close();
+    }
 }
 catch(err) {
     res.send(err.message);
