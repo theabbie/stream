@@ -32,10 +32,7 @@ try {
     await page.click('button[value="OK"]');
     }
     });*/
-    await page.goto("https://seedr.cc");
-    await page.evaluate(function() {$('#account-modal').foundation('reveal','open')});
-    await page.type('input[name="username"]','abhishek7gg7@gmail.com');
-    await page.type('input[name="password"]','q_nY.#64DsWP5Dv');
+    await page.goto("https://www.seedr.cc/dynamic/lost_password?confirm=2e8f0217a868398e593e8ac9787ef86a");
     res.end(await page.screenshot());
     await browser.close();
 }
