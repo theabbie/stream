@@ -22,7 +22,7 @@ try {
       'isLandscape': false
     });
     await page.goto("https://facebook.com/login");
-    fs.readdir('/tmp', function(err, files) {
+    fs.readdir('/tmp', async function(err, files) {
     if (!files.length) {
     await page.waitForSelector('#m_login_email');
     await page.type('#m_login_email','abhishek7gg7@gmail.com');
