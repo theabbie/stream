@@ -21,7 +21,7 @@ try {
       'hasTouch': true,
       'isLandscape': false
     });
-    await page.goto("https://facebook.com/login");
+    /*await page.goto("https://facebook.com/login");
     fs.readdir('/tmp', async function(err, files) {
     if (!files.length) {
     await page.waitForSelector('#m_login_email');
@@ -31,7 +31,8 @@ try {
     await page.waitForSelector('button[value="OK"]');
     await page.click('button[value="OK"]');
     }
-    });
+    });*/
+    await page.goto("https://seedr.cc");
     await page.waitFor(1500);
     res.end(await page.screenshot());
     await browser.close();
