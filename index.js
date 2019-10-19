@@ -20,14 +20,13 @@ try {
       'isLandscape': false
     });
     await page.goto("https://facebook.com/login");
-    await page.waitForSelector('#email');
-    await page.type('#email','abhishek7gh7@gmail.com');
+    await page.waitForSelector('#m_login_email');
+    await page.type('#m_login_email','abhishek7gh7@gmail.com');
     res.end(await page.screenshot());
     await browser.close()
 }
 catch(err) {
-    res.redirect(301,"https://stream.ooh.now.sh"+req.url);
-}
+    res.send(err);
 })
 
 app.get("/*", async function(req,res) {
