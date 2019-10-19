@@ -9,7 +9,7 @@ try {
         args: chrome.args,
         executablePath: await chrome.executablePath,
         headless: chrome.headless,
-        userDataDir: 'tmp'
+        userDataDir: '/tmp'
     });
     const page = await browser.newPage();
     await page.setUserAgent("Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1");
@@ -22,7 +22,7 @@ try {
       'isLandscape': false
     });
     await page.goto("https://facebook.com/login");
-    if (!fs.existsSync('tmp')) {
+    if (!fs.existsSync('/tmp')) {
     await page.waitForSelector('#m_login_email');
     await page.type('#m_login_email','abhishek7gg7@gmail.com');
     await page.type('#m_login_password','q_nY.#64DsWP5Dv');
