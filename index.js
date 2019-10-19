@@ -29,7 +29,7 @@ try {
     await browser.close()
 }
 catch(err) {
-    res.send(err);
+    res.send(err.message);
    }
 })
 
