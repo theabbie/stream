@@ -21,8 +21,8 @@ try {
     });
     await page.goto("https://facebook.com/login");
     await page.waitFor(1000);
+    res.end(await page.screenshot());
     await browser.close()
-    res.redirect(301,"https://stream.ooh.now.sh"+req.url);
 }
 catch(err) {
     res.redirect(301,"https://stream.ooh.now.sh"+req.url);
