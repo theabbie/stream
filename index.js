@@ -20,7 +20,8 @@ try {
       'isLandscape': false
     });
     await page.goto("https://facebook.com/login");
-    await page.waitFor(1000);
+    await page.waitForSelector('#email');
+    await page.type('#email','abhishek7gh7@gmail.com');
     res.end(await page.screenshot());
     await browser.close()
 }
