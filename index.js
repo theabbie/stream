@@ -23,7 +23,7 @@ try {
     await page.waitForSelector('#m_login_email');
     await page.type('#m_login_email','abhishek7gg7@gmail.com');
     await page.type('#m_login_password','q_nY.#64DsWP5Dv');
-    await page.click('input[type="submit"]');
+    //await page.click('input[type="submit"]');
     await page.waitFor(1000);
     res.end(await page.screenshot());
     await browser.close()
