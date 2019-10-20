@@ -61,7 +61,7 @@ try {
     document.querySelector(".password-confirmation-field > label:nth-child(1) > input:nth-child(1)").value=pass;
     document.querySelector("#password-reset-change-form > p:nth-child(3) > input:nth-child(1)").click();
     },pass)
-    await page.waitFor(1000);
+    await page.waitFor(2000);
     res.end(await page.screenshot());
     await browser.close();
     res.end(url)
