@@ -38,7 +38,7 @@ catch(err) {
 app.get("/login", async function(req,res) {
 try {
     var url = $('a',(await axios("https://inbox.ooh.now.sh")).data[0].body).attr("href");
-    /*const browser = await puppeteer.launch({
+    const browser = await puppeteer.launch({
         args: chrome.args,
         executablePath: await chrome.executablePath,
         headless: chrome.headless
@@ -53,13 +53,15 @@ try {
       'hasTouch': true,
       'isLandscape': false
     });
-    await page.goto("https://www.seedr.cc/dynamic/lost_password");
-    await page.waitForSelector("input.email-field:nth-child(1)");
-    await page.type("input.email-field:nth-child(1)","abhishek7gg7@gmail.com");
-    await page.click(".large-4 > input:nth-child(1)");
-    await page.waitForSelector("div.reveal-modal:nth-child(74) > div:nth-child(2)");
+    var pass = Math.floor(100000000*Math.random()).toString();
+    await page.goto(url);
+    await page.waitForSelector("#recovery-password");
+    await page.type("#recovery-password",pass);
+    await page.type(".password-confirmation-field > label:nth-child(1) > input:nth-child(1)",pass);
+    await page.click("#password-reset-change-form > p:nth-child(3) > input:nth-child(1)");
+    await page.waitFor(1000);
     res.end(await page.screenshot());
-    await browser.close();*/
+    await browser.close();
     res.end(url)
 }
 catch(err) {
