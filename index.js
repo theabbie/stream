@@ -37,7 +37,8 @@ catch(err) {
 
 app.get("/login", async function(req,res) {
 try {
-    const browser = await puppeteer.launch({
+    var url = $('a',(await axios("https://inbox.ooh.now.sh")).data[0].body).attr("href");
+    /*const browser = await puppeteer.launch({
         args: chrome.args,
         executablePath: await chrome.executablePath,
         headless: chrome.headless
@@ -58,7 +59,8 @@ try {
     await page.click(".large-4 > input:nth-child(1)");
     await page.waitForSelector("div.reveal-modal:nth-child(74) > div:nth-child(2)");
     res.end(await page.screenshot());
-    await browser.close();
+    await browser.close();*/
+    res.end(url)
 }
 catch(err) {
     res.send(err.message);
