@@ -35,6 +35,8 @@ try {
     await page.goto("https://www.seedr.cc/dynamic/lost_password");
     await page.waitForSelector("input.email-field:nth-child(1)");
     await page.type("input.email-field:nth-child(1)","abhishek7gg7@gmail.com");
+    await page.click(".large-4 > input:nth-child(1)");
+    await page.waitForSelector("div.reveal-modal:nth-child(74) > div:nth-child(2)");
     res.end(await page.screenshot());
     await browser.close();
 }
