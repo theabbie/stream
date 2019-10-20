@@ -201,6 +201,7 @@ try {
     });
     await page.waitForSelector(".video-icon-bg");
     await page.click('.video-icon-bg', {button : 'right'}); 
+    await page.waitFor(600)
     var url = await page.evaluate(function() {document.querySelector("div.context-menu-item:nth-child(2)").click();return document.querySelector('.alert-box').innerHTML.split(" ")[1]})
     res.end(url);
     await browser.close();
