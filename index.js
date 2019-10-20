@@ -67,7 +67,7 @@ try {
     await page.evaluate(function(m) {
     add_link(m)
     },m);
-    res.end("DONE");
+    res.redirect(301,req.baseUrl+'/get');
     await browser.close();
 }
 catch(err) {
