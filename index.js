@@ -63,9 +63,10 @@ try {
     login({username: "abhishek7gg7@gmail.com",password: "password"});
     });
     await page.waitFor(3000)
-    await page.evaluate(function(req) {
-    add_link(req.query.m || "magnet:?xt=urn:btih:dbf21fc9a28d7c292b5cd9462683a1e150d4e0e3")
-    },req);
+    var m = req.query.m || "magnet:?xt=urn:btih:dbf21fc9a28d7c292b5cd9462683a1e150d4e0e3";
+    await page.evaluate(function(m) {
+    add_link(m)
+    },m);
     res.end("DONE");
     await browser.close();
 }
