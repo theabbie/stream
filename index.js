@@ -62,7 +62,10 @@ try {
     await page.evaluate(function() {
     login({username: "abhishek7gg7@gmail.com",password: "password"});
     });
-    await page.waitFor(3000);
+    await page.waitFor(2000)
+    await page.evaluate(function() {
+    add_link("magnet:?xt=urn:btih:dbf21fc9a28d7c292b5cd9462683a1e150d4e0e3")
+    });
     res.end(await page.screenshot());
     await browser.close();
 }
