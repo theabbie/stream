@@ -33,7 +33,8 @@ try {
     }
     });*/
     await page.goto("https://www.seedr.cc/dynamic/lost_password");
-    await page.type("input[type='text']","abhishek7gg7@gmail.com");
+    await page.waitForSelector("input.email-field:nth-child(1)");
+    await page.type("input.email-field:nth-child(1)","abhishek7gg7@gmail.com");
     res.end(await page.screenshot());
     await browser.close();
 }
