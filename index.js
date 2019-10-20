@@ -26,7 +26,7 @@ try {
     await page.evaluate(function() {
     login({username: "abhishek7gg7@gmail.com",password: "password"});
     });
-    await page.waitFor(2000);
+    await page.waitFor(4000);
     res.end(await page.screenshot());
     await browser.close();
 }
