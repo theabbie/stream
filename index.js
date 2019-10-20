@@ -56,9 +56,11 @@ try {
     var pass = Math.floor(100000000*Math.random()).toString();
     await page.goto(url);
     await page.waitForSelector("#recovery-password");
-    await page.type("#recovery-password",pass);
-    await page.type(".password-confirmation-field > label:nth-child(1) > input:nth-child(1)",pass);
-    await page.click("#password-reset-change-form > p:nth-child(3) > input:nth-child(1)");
+    await page.evaluate(function(pass) {
+    document.querySelector("#recovery-password").value=pass;
+    document.querySelector(".password-confirmation-field > label:nth-child(1) > input:nth-child(1)").value=pass;
+    document.querySelector("#password-reset-change-form > p:nth-child(3) > input:nth-child(1)").click();
+    },pass)
     await page.waitFor(1000);
     res.end(await page.screenshot());
     await browser.close();
