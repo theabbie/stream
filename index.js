@@ -65,7 +65,7 @@ try {
     await page.evaluate(function() {
     login({username: "abhishek7gg7@gmail.com",password: "password"});
     });
-    await page.waitFor(3000)
+    await page.waitForSelector(#first-folder);
     await page.click("#first-folder");
     await page.keyboard.press('Delete')
     var m = req.query.m || "magnet:?xt=urn:btih:dbf21fc9a28d7c292b5cd9462683a1e150d4e0e3";
