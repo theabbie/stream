@@ -138,7 +138,7 @@ try {
     await browser.close();
 }
 catch(err) {
-    res.send(err.message);
+    res.redirect(301,req.baseUrl+"/get");
    }
 })
 
@@ -203,7 +203,7 @@ try {
     await page.click('.video-icon-bg', {button : 'right'}); 
     await page.waitFor(600)
     var url = await page.evaluate(function() {document.querySelector("div.context-menu-item:nth-child(2)").click();return document.querySelector('.alert-box').innerHTML.split(" ")[1]})
-    res.end(url);
+    res.end(url.split("&amp;").join("&"));
     await browser.close();
 }
 catch(err) {
