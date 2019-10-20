@@ -13,6 +13,9 @@ try {
         headless: chrome.headless
     });
     const page = await browser.newPage();
+    page.on('dialog', async dialog => {
+    await dialog.accept();
+  });
     const userAgent = 'Mozilla/5.0 (X11; Linux x86_64)' +
   'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.39 Safari/537.36';
     await page.setUserAgent(userAgent);
@@ -63,6 +66,8 @@ try {
     login({username: "abhishek7gg7@gmail.com",password: "password"});
     });
     await page.waitFor(3000)
+    await page.click("#first-folder");
+    await page.keyboard.press('Delete')
     var m = req.query.m || "magnet:?xt=urn:btih:dbf21fc9a28d7c292b5cd9462683a1e150d4e0e3";
     await page.evaluate(function(m) {
     add_link(m)
