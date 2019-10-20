@@ -69,7 +69,7 @@ try {
     await page.waitForSelector("#first-folder");
     await page.click("#first-folder");
     await page.keyboard.press('Delete');
-    res.redirect(301,req.baseUrl+'/add?m='+req.query.m&done=true);
+    res.redirect(301,req.baseUrl+'/add?m='+req.query.m+'&done=true');
     }
     else {
     await page.waitFor(3000);
