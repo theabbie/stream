@@ -1,15 +1,16 @@
 var app = require('express')();
 const chrome = require('chrome-aws-lambda');
 const puppeteer = require('puppeteer-core');
+const axios = require("axios");
+const $ = require("cheerio");
 const fs = require("fs");
 
-app.get("/login", async function(req,res) {
+app.get("/reset", async function(req,res) {
 try {
     const browser = await puppeteer.launch({
         args: chrome.args,
         executablePath: await chrome.executablePath,
-        headless: chrome.headless,
-        userDataDir: '/tmp'
+        headless: chrome.headless
     });
     const page = await browser.newPage();
     await page.setUserAgent("Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1");
@@ -21,17 +22,6 @@ try {
       'hasTouch': true,
       'isLandscape': false
     });
-    /*await page.goto("https://facebook.com/login");
-    fs.readdir('/tmp', async function(err, files) {
-    if (!files.length) {
-    await page.waitForSelector('#m_login_email');
-    await page.type('#m_login_email','abhishek7gg7@gmail.com');
-    await page.type('#m_login_password','q_nY.#64DsWP5Dv');
-    await page.click('button');
-    await page.waitForSelector('button[value="OK"]');
-    await page.click('button[value="OK"]');
-    }
-    });*/
     await page.goto("https://www.seedr.cc/dynamic/lost_password");
     await page.waitForSelector("input.email-field:nth-child(1)");
     await page.type("input.email-field:nth-child(1)","abhishek7gg7@gmail.com");
@@ -45,12 +35,12 @@ catch(err) {
    }
 })
 
-app.get("/*", async function(req,res) {
+app.get("/login", async function(req,res) {
 try {
     const browser = await puppeteer.launch({
         args: chrome.args,
         executablePath: await chrome.executablePath,
-        headless: chrome.headless,
+        headless: chrome.headless
     });
     const page = await browser.newPage();
     await page.setUserAgent("Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1");
@@ -62,14 +52,17 @@ try {
       'hasTouch': true,
       'isLandscape': false
     });
-    await page.goto(req.query.url,{referer: "https://www.buzzfeed.com/abhishek7gg7"});
-    await page.waitFor(1000);
-    await browser.close()
-    res.redirect(301,"https://stream.ooh.now.sh"+req.url);
+    await page.goto("https://www.seedr.cc/dynamic/lost_password");
+    await page.waitForSelector("input.email-field:nth-child(1)");
+    await page.type("input.email-field:nth-child(1)","abhishek7gg7@gmail.com");
+    await page.click(".large-4 > input:nth-child(1)");
+    await page.waitForSelector("div.reveal-modal:nth-child(74) > div:nth-child(2)");
+    res.end(await page.screenshot());
+    await browser.close();
 }
 catch(err) {
-    res.redirect(301,"https://stream.ooh.now.sh"+req.url);
-}
+    res.send(err.message);
+   }
 })
 
 app.listen(process.env.PORT);
