@@ -65,11 +65,11 @@ try {
     await page.evaluate(function() {
     login({username: "abhishek7gg7@gmail.com",password: "password"});
     });
+    await page.waitForSelector("#first-folder");
     var m = req.query.m || "magnet:?xt=urn:btih:dbf21fc9a28d7c292b5cd9462683a1e150d4e0e3";
     await page.evaluate(function(m) {
-    setTimeout(function() {add_link(m)},2000)
+    add_link(m)
     },m);
-    await page.waitForSelector("#first-folder");
     await page.click("#first-folder");
     await page.keyboard.press('Delete');
     res.redirect(301,req.baseUrl+'/get');
