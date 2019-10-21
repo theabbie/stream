@@ -72,6 +72,7 @@ try {
     await page.evaluate(function(m) {
     add_link(m)
     },m);
+    await page.waitFor(750);
     res.redirect(301,req.baseUrl+'/get');
     await browser.close();
 }
