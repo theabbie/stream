@@ -139,7 +139,7 @@ try {
     await page.evaluate(function() {
     login({username: "abhishek7gg7@gmail.com",password: "password"});
     });
-    await page.waitForSelector("#first-folder");
+    await page.waitForSelector("#first-folder", { timeout: 5000 });
     await page.click("#first-folder");
     await page.keyboard.press('Delete');
     await page.waitFor(750);
