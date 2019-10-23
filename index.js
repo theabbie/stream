@@ -7,7 +7,7 @@ const fs = require("fs");
 
 app.get("/add", async function(req,res) {
 try {
-    if (!req.query.done) {res.redirect(301,req.baseUrl+'/delete')}
+    if (!req.query.done) {res.redirect(301,req.baseUrl+'/delete?m='+req.query.m)}
     const browser = await puppeteer.launch({
         args: chrome.args,
         executablePath: await chrome.executablePath,
@@ -144,11 +144,11 @@ try {
     await page.click("#first-folder");
     await page.keyboard.press('Delete');
     await page.waitFor(750);
-    res.redirect(301,req.baseUrl+'/add?done=true');
+    res.redirect(301,req.baseUrl+'/add?done=true&m='+req.query.m);
     await browser.close();
 }
 catch(err) {
-    res.redirect(301,req.baseUrl+'/add?done=true')
+    res.redirect(301,req.baseUrl+'/add?done=true&m='+req.query.m)
    }
 })
 
