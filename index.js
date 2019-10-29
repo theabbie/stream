@@ -79,6 +79,7 @@ try {
     await browser.close();
 }
 catch(err) {
+    req.session.destroy();
     res.send(err.message);
    }
 })
@@ -291,6 +292,7 @@ try {
     await browser.close();
 }
 catch(err) {
+    req.session.destroy();
     res.send(err.message);
    }
 })
