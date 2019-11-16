@@ -4,13 +4,11 @@ const puppeteer = require('puppeteer-core');
 const axios = require("axios");
 const $ = require("cheerio");
 const fs = require("fs");
-var session = require("express-session");
-app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 3600000}}))
 
 app.get("/add", async function(req,res) {
 try {
-    req.session.m = req.query.m;
-    if (!req.session.done) {res.redirect(301,req.baseUrl+'/delete')}
+    process.env.m = req.query.m;
+    res.redirect(301,req.baseUrl+'/delete');
     const browser = await puppeteer.launch({
         args: chrome.args,
         executablePath: await chrome.executablePath,
@@ -70,7 +68,7 @@ try {
     login({username: "abhishek7gg7@gmail.com",password: "password"});
     });
     await page.waitFor(3000);
-    var m = req.session.m || "magnet:?xt=urn:btih:dbf21fc9a28d7c292b5cd9462683a1e150d4e0e3";
+    var m = process.env.m || req.query.m || "magnet:?xt=urn:btih:dbf21fc9a28d7c292b5cd9462683a1e150d4e0e3";
     await page.evaluate(function(m) {
     add_link(m)
     },m);
@@ -79,7 +77,6 @@ try {
     await browser.close();
 }
 catch(err) {
-    req.session.destroy();
     res.send(err.message);
    }
 })
@@ -148,12 +145,10 @@ try {
     await page.click("#first-folder");
     await page.keyboard.press('Delete');
     await page.waitFor(750);
-    req.session.done=true;
     res.redirect(301,req.baseUrl+'/add');
     await browser.close();
 }
 catch(err) {
-    req.session.done=true;
     res.redirect(301,req.baseUrl+'/add');
    }
 })
@@ -287,12 +282,10 @@ try {
     await page.click('.video-icon-bg', {button : 'right'}); 
     await page.waitFor(600)
     var url = await page.evaluate(function() {document.querySelector("div.context-menu-item:nth-child(2)").click();return document.querySelector('.alert-box').innerHTML.split(" ")[1]})
-    req.session.destroy();
     res.end(url.split("&amp;").join("&"));
     await browser.close();
 }
 catch(err) {
-    req.session.destroy();
     res.send(err.message);
    }
 })
