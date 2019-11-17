@@ -71,11 +71,11 @@ try {
     add_link(m)
     },m);
     await page.waitFor(750);
-    res.redirect(301,req.baseUrl+'/get');
+    res.end();
     await browser.close();
 }
 catch(err) {
-    res.send(err.message);
+    res.status(502).send(err.message);
    }
 })
 
@@ -143,11 +143,11 @@ try {
     await page.click("#first-folder");
     await page.keyboard.press('Delete');
     await page.waitFor(750);
-    res.redirect(301,req.baseUrl+'/add');
+    res.end();
     await browser.close();
 }
 catch(err) {
-    res.redirect(301,req.baseUrl+'/add');
+    res.end();
    }
 })
 
@@ -211,7 +211,7 @@ try {
     });
     await page.waitForSelector("#first-folder");
     var id = await page.evaluate(function() {return document.querySelector("#first-folder").getAttribute("folder_id");});
-    res.redirect(301,req.baseUrl+'/search?id='+id);
+    res.end(req.baseUrl+'/search?id='+id);
     await browser.close();
 }
 catch(err) {
@@ -284,7 +284,7 @@ try {
     await browser.close();
 }
 catch(err) {
-    res.send(err.message);
+    res.status(502).send(err.message);
    }
 })
 
