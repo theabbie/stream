@@ -71,10 +71,12 @@ try {
     add_link(m)
     },m);
     await page.waitFor(750);
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.end();
     await browser.close();
 }
 catch(err) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.status(502).send(err.message);
    }
 })
@@ -143,10 +145,12 @@ try {
     await page.click("#first-folder");
     await page.keyboard.press('Delete');
     await page.waitFor(750);
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.end();
     await browser.close();
 }
 catch(err) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.end();
    }
 })
@@ -211,6 +215,7 @@ try {
     });
     await page.waitForSelector("#first-folder");
     var id = await page.evaluate(function() {return document.querySelector("#first-folder").getAttribute("folder_id");});
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.end(req.baseUrl+'/search?id='+id);
     await browser.close();
 }
@@ -280,10 +285,12 @@ try {
     await page.click('.video-icon-bg', {button : 'right'}); 
     await page.waitFor(600)
     var url = await page.evaluate(function() {document.querySelector("div.context-menu-item:nth-child(2)").click();return document.querySelector('.alert-box').innerHTML.split(" ")[1]})
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.end(url.split("&amp;").join("&"));
     await browser.close();
 }
 catch(err) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.status(502).send(err.message);
    }
 })
