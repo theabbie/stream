@@ -7,10 +7,6 @@ const fs = require("fs");
 
 app.get("/add", async function(req,res) {
 try {
-    if (!process.env.done) {
-    process.env.m = req.query.m;
-    res.redirect(301,req.baseUrl+'/delete');
-    }
     const browser = await puppeteer.launch({
         args: chrome.args,
         executablePath: await chrome.executablePath,
@@ -70,7 +66,7 @@ try {
     login({username: "abhishek7gg7@gmail.com",password: "password"});
     });
     await page.waitFor(3000);
-    var m = process.env.m || req.query.m || "magnet:?xt=urn:btih:dbf21fc9a28d7c292b5cd9462683a1e150d4e0e3";
+    var m = req.query.m || "magnet:?xt=urn:btih:dbf21fc9a28d7c292b5cd9462683a1e150d4e0e3";
     await page.evaluate(function(m) {
     add_link(m)
     },m);
@@ -147,12 +143,10 @@ try {
     await page.click("#first-folder");
     await page.keyboard.press('Delete');
     await page.waitFor(750);
-    process.env.done = true;
     res.redirect(301,req.baseUrl+'/add');
     await browser.close();
 }
 catch(err) {
-    process.env.done = true;
     res.redirect(301,req.baseUrl+'/add');
    }
 })
