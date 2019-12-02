@@ -216,8 +216,7 @@ try {
     await page.waitForSelector("#first-folder");
     var id = await page.evaluate(function() {return document.querySelector("#first-folder").getAttribute("folder_id");});
     res.setHeader("Access-Control-Allow-Origin", "*");
-    //res.end(req.baseUrl+'/search?id='+id);
-    res.redirect(301,req.baseUrl+'/search?id='+id);
+    res.end(req.baseUrl+'/search?id='+id);
     await browser.close();
 }
 catch(err) {
