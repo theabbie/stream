@@ -213,7 +213,7 @@ try {
     await page.evaluate(function() {
     login({username: "abhishek7gg7@gmail.com",password: "password"});
     });
-    await page.waitForSelector("#first-folder", { timeout: 5000 });
+    await page.waitForSelector("#first-folder",{timeout: 3000});
     var id = await page.evaluate(function() {return document.querySelector("#first-folder").getAttribute("folder_id");});
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.end(req.baseUrl+'/search?id='+id);
