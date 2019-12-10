@@ -211,7 +211,7 @@ try {
 });
     await page.goto("https://www.seedr.cc/");
     await page.evaluate(function() {
-    login({username: "abhishek7gg7@gmail.com",password: "Passsword"});
+    login({username: "abhishek7gg7@gmail.com",password: "Passsw0rd"});
     });
     await page.waitForSelector("#first-folder");
     var id = await page.evaluate(function() {return document.querySelector("#first-folder").getAttribute("folder_id");});
