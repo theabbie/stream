@@ -65,12 +65,12 @@ try {
     await page.evaluate(function() {
     login({username: "abhishek7gg7@gmail.com",password: "password"});
     });
-    await page.waitFor(1000);
+    await page.waitFor(1500);
     var m = req.query.m || "magnet:?xt=urn:btih:dbf21fc9a28d7c292b5cd9462683a1e150d4e0e3";
     await page.evaluate(function(m) {
     add_link(m)
     },m);
-    await page.waitFor(750);
+    await page.waitFor(1000);
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.end();
     await browser.close();
