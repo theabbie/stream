@@ -63,7 +63,7 @@ try {
 });
     await page.goto("https://www.seedr.cc/");
     await page.evaluate(function() {
-    login({username: "abhishek7gg7@gmail.com",password: "password"});
+    login({username: "abhishek7gg7@gmail.com",password: "Passsw0rd"});
     });
     await page.waitFor(1500);
     var m = req.query.m || "magnet:?xt=urn:btih:dbf21fc9a28d7c292b5cd9462683a1e150d4e0e3";
@@ -139,7 +139,7 @@ try {
 });
     await page.goto("https://www.seedr.cc/");
     await page.evaluate(function() {
-    login({username: "abhishek7gg7@gmail.com",password: "password"});
+    login({username: "abhishek7gg7@gmail.com",password: "Passsw0rd"});
     });
     await page.waitForSelector("#first-folder", { timeout: 5000 });
     await page.click("#first-folder");
@@ -211,7 +211,7 @@ try {
 });
     await page.goto("https://www.seedr.cc/");
     await page.evaluate(function() {
-    login({username: "abhishek7gg7@gmail.com",password: "password"});
+    login({username: "abhishek7gg7@gmail.com",password: "Passsword"});
     });
     await page.waitForSelector("#first-folder");
     var id = await page.evaluate(function() {return document.querySelector("#first-folder").getAttribute("folder_id");});
@@ -279,7 +279,7 @@ try {
 });
     await page.goto("https://www.seedr.cc/files/"+req.query.id);
     await page.evaluate(function() {
-    login({username: "abhishek7gg7@gmail.com",password: "password"});
+    login({username: "abhishek7gg7@gmail.com",password: "Passsw0rd"});
     });
     await page.waitForSelector(".video-icon-bg");
     await page.click('.video-icon-bg', {button : 'right'}); 
